@@ -3,6 +3,7 @@
 
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lotties/register.json"
+import colleagues from "../../assets/lotties/Colleagues.json"
 
 export default function Registration() {
 
@@ -28,7 +29,8 @@ export default function Registration() {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative">
+    <div>
+      <div className="min-h-screen flex items-center justify-center flex-col py-12 px-4 sm:px-6 lg:px-8 relative">
 
 
       <div className="max-w-md w-full space-y-6 p-8  rounded-lg">
@@ -172,6 +174,17 @@ export default function Registration() {
       <div className="absolute w-64 right-48 bottom-40">
          <Lottie  animationData={registerLottie} loop={true} />
       </div>
+
+      <div className="absolute w-64 left-48 -bottom-20">
+         <Lottie  animationData={colleagues} loop={true} />
+      </div>
+
+    </div>
+
+    <div className="pt-12 w-7xl mx-auto text-gray-300">
+        <hr/>
+      </div>
+
     </div>
   );
 }
