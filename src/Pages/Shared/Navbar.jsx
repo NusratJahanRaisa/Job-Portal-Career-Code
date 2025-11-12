@@ -1,4 +1,6 @@
+import { use } from "react";
 import { Link,NavLink, useLocation } from "react-router";
+import { AuthContext } from "../../Contexts & Providers/AuthContext";
 
 export default function Navbar() {
 
@@ -12,6 +14,16 @@ export default function Navbar() {
     { name: "Contact", path: "/contact" },
   ];
   const location = useLocation(); 
+  const {user,signOutUser} = use(AuthContext)
+
+
+  const handleSignOut= () =>{
+    signOutUser()
+  .then(()=>{
+    console.log("sign out successful")
+  })
+  .catch(err=>console.log("error - ",err))
+  }
 
   return (
     <nav className="w-full bg-white shadow-sm fixed top-0 left-0 z-50 ">
@@ -44,7 +56,12 @@ export default function Navbar() {
 
         {/* Right Buttons */}
         <div className="hidden md:flex items-center gap-3">
-          <NavLink
+          {
+            user ? 
+            <button onClick={handleSignOut} className="btn bg-blue-600 text-white  hover:bg-blue-700 transition">Log Out</button> 
+            : 
+            <div>
+            <NavLink
             to="/register"
             className={({isActive})=> `hover:text-white hover:bg-blue-700 hover:transition  px-5 py-2 rounded-lg 
 
@@ -60,55 +77,10 @@ export default function Navbar() {
           >
             Sign in
           </NavLink>
-        </div>
-
-
-
-
-
-
-
-        {/* Mobile menu toggle */}
-        {/* <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-700"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button> */}
-
-      </div>
-
-      {/* Mobile Menu */}
-      {/* {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100">
-          <div className="flex flex-col items-start p-4 space-y-3">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className="text-gray-700 hover:text-blue-600"
-              >
-                {link.name}
-              </NavLink>
-            ))}
-            <div className="mt-4 flex flex-col gap-2 w-full">
-              <Link
-                to="/register"
-                className="text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Register
-              </Link>
-              <Link
-                to="/login"
-                className="bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition"
-              >
-                Sign in
-              </Link>
-            </div>
           </div>
+          }
         </div>
-      )} */}
+      </div>
 
       
     </nav>
