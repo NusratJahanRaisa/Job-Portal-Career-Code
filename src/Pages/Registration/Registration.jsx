@@ -2,28 +2,35 @@
 // import { useState } from "react";
 
 import Lottie from "lottie-react";
-import registerLottie from "../../assets/lotties/register.json"
+import registerLottie from "../../assets/lotties/job.json"
 import colleagues from "../../assets/lotties/Colleagues.json"
+import { AuthContext } from "../../Contexts & Providers/AuthContext";
+import { use } from "react";
 
 export default function Registration() {
-
-
-//   const [formData, setFormData] = useState({
-//     fullName: "",
-//     email: "",
-//     username: "",
-//     password: "",
-//     confirmPassword: "",
-//   });
 
 //   const handleChange = (e) => {
 //     setFormData({ ...formData, [e.target.name]: e.target.value });
 //   };
+  const {createUser} = use(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(formData);
-    // Add API call or form submission logic here
+    const form = e.target;
+    // const fullName = form.fullName.value;
+    const email = form.email.value;
+    // const username = form.username.value;
+    const password = form.password.value;
+    // const confirmPassword = form.confirmPassword.value;
+    
+    createUser(email,password)
+    .then(res=>{
+      console.log(res);
+    }
+    )
+    .catch(err=>{
+      console.log(err);
+    })
   };
 
 
@@ -64,6 +71,12 @@ export default function Registration() {
           </div>
         </div>
 
+
+
+
+
+
+
         {/* Form */}
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
@@ -79,6 +92,8 @@ export default function Registration() {
               className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
+
+
 
           <div>
             <label htmlFor="email" className="sr-only">Email</label>
@@ -171,7 +186,7 @@ export default function Registration() {
         </p>
       </div>
 
-      <div className="absolute w-64 right-48 bottom-40">
+      <div className="absolute w-64 right-48 top-56">
          <Lottie  animationData={registerLottie} loop={true} />
       </div>
 
