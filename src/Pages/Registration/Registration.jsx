@@ -6,6 +6,7 @@ import registerLottie from "../../assets/lotties/job.json"
 import colleagues from "../../assets/lotties/Colleagues.json"
 import { AuthContext } from "../../Contexts & Providers/AuthContext";
 import { use } from "react";
+import SocialIcon from "../Shared/SocialIcon";
 
 export default function Registration() {
 
@@ -51,15 +52,7 @@ export default function Registration() {
 
         {/* Social Login */}
         <div className="mt-6 flex justify-center">
-
-          <button className="flex items-center justify-center w-full py-4 px-4 border border-gray-300 rounded-md bg-white text-base font-medium text-gray-700 hover:bg-gray-50">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png"
-              alt="Google"
-              className="w-5 h-5 mr-2"
-            />
-            Login with Google
-          </button>
+          <SocialIcon></SocialIcon>
         </div>
 
         <div className="relative my-6">
