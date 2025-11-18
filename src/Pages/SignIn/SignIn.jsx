@@ -7,13 +7,19 @@ import planeLottie from "../../assets/lotties/Paperplane.json"
 import { AuthContext } from "../../Contexts & Providers/AuthContext";
 import { use } from "react";
 import SocialIcon from "../Shared/SocialIcon";
+import { useLocation, useNavigate } from "react-router";
 
 export default function SignIn() {
 
 
   const {signInUser} = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = (location.state || '/')
 
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -26,6 +32,7 @@ export default function SignIn() {
     signInUser(email,password)
     .then(res=>{
       console.log(res);
+      navigate(from)
     }
     )
     .catch(err=>{
@@ -52,7 +59,7 @@ export default function SignIn() {
         {/* Social Login */}
         <div className="mt-6 flex justify-center">
 
-          <SocialIcon></SocialIcon>
+          <SocialIcon from={from}></SocialIcon>
         </div>
 
         <div className="relative my-6">

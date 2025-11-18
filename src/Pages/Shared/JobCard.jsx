@@ -56,11 +56,11 @@ export default function JobCard({ job }) {
           <div className="flex items-center justify-between pt-2 mt-auto">
 
             <p className="text-base text-blue-600">
-              {job.salaryRange.min}-{job.salaryRange.max} ৳
+              {job.salaryRange.min}-{job.salaryRange.max} BDT
             </p>
 
             <Link to={`/jobs/${job._id}`}>
-            <button className="rounded-md btn bg-base-200 text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition-colors duration-700 ease-in-out">Apply Now</button>
+            <button className="rounded-md btn bg-base-200 text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition-colors duration-700 ease-in-out">Apply</button>
             </Link>
           </div>
 
