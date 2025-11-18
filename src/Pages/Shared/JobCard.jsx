@@ -1,9 +1,10 @@
 import { MapPin, Clock } from "lucide-react";
+import { Link } from "react-router";
 
 export default function JobCard({ job }) {
   return (
 
-      <div className="group w-full max-w-sm rounded-md p-4 h-full flex flex-col border border-gray-200 bg-[#F8FAFF] hover:bg-white hover:border-blue-300">
+      <div className="group w-full max-w-sm rounded-md p-4 h-full flex flex-col border border-gray-200 bg-[#F8FAFF] hover:bg-white hover:border-blue-300 transition-transform duration-300 hover:-translate-y-0.5">
 
 
 
@@ -58,12 +59,12 @@ export default function JobCard({ job }) {
               {job.salaryRange.min}-{job.salaryRange.max} ৳
             </p>
 
+            <Link to={`/jobs/${job._id}`}>
             <button className="rounded-md btn bg-base-200 text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition-colors duration-700 ease-in-out">Apply Now</button>
+            </Link>
           </div>
 
         </div>
-
-
 
 
       </div>
