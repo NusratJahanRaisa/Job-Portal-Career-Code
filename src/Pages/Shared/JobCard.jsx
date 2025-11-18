@@ -54,7 +54,7 @@ export default function JobCard({ job }) {
           {/* Salary + Button */}
           <div className="flex items-center justify-between pt-2 mt-auto">
 
-            <p className="text-base text-blue-600 font-sans">
+            <p className="text-base text-blue-600">
               {job.salaryRange.min}-{job.salaryRange.max} ৳
             </p>
 
