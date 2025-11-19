@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import { Link } from "react-router";
+import Hooks from "../../Hooks/Hooks";
+import axios from 'axios'
+import Swal from 'sweetalert2'
+
+
 
 const ApplicationForm = () => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const {user} = Hooks()
   const jobData = useLoaderData();
   // const job = jobData.find((j) => String(j.id) === String(id));
 
@@ -25,14 +31,42 @@ const ApplicationForm = () => {
     const coverLetter = e.target.coverLetter.value;
     const resume = e.target.resume.files[0]; // file
 
+    
+    // final object creation to send in DB
+    const application = {
+      jobId : id,
+      applicant : user.email,
+      fullName,
+      email,
+      phone,
+      location,
+      position,
+      experience,
+      skills,
+      coverLetter,
+      resume
+    }
+
+  axios.post('http://localhost:5000/applications', application)
+  .then(response=> {
+    console.log(response);
+    if(response.data.insertedId){
+      Swal.fire({
+      title: "Application Submitted!",
+      icon: "success",
+      draggable: true
+      });
+    }
+  })
+  .catch(error=> {
+    console.log(error);
+  });
 
 
-
-
-    setTimeout(() => {
-      setLoading(false);
-      alert("Application submitted successfully!");
-    }, 2000);
+    // setTimeout(() => {
+    //   setLoading(false);
+    //   alert("Application submitted successfully!");
+    // }, 2000);
   };
 
   return (
@@ -87,7 +121,7 @@ const ApplicationForm = () => {
             required
           />
           <input
-            type="number"
+            type="text"
             name="experience"
             placeholder="Years of Experience"
             className="w-full h-8 px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2  text-xs focus:ring-blue-500"
