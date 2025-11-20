@@ -1,20 +1,24 @@
 import { use } from "react";
 import { Link,NavLink, useLocation } from "react-router";
 import { AuthContext } from "../../Contexts & Providers/AuthContext";
+import Hooks from "../../Hooks/Hooks";
 
 export default function Navbar() {
+  
+const {user,signOutUser} = use(AuthContext)
 
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Find a Job", path: "/jobs" },
     { name: "Recruiters", path: "/recruiters" },
-    { name: "Candidates", path: "/candidates" },
+    
+    user ? { name: "Applications", path: "/applications" } : {name: "Candidates", path: "/candidates"},
+    
     { name: "Pages", path: "/pages" },
     { name: "Blog", path: "/blog" },
     { name: "Contact", path: "/contact" },
   ];
   const location = useLocation(); 
-  const {user,signOutUser} = use(AuthContext)
 
 
   const handleSignOut= () =>{
