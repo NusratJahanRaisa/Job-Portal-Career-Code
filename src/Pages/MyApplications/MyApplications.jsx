@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Hooks from '../../Hooks/Hooks';
 import axios from 'axios';
+import MyApplicationList from './MyApplicationList';
 
 const MyApplications = () => {
 
@@ -19,8 +20,8 @@ const MyApplications = () => {
 
 
     return (
-        <div className='mt-20'>
-           {applicationData.length} 
+        <div className='my-30 '>
+           <MyApplicationList applicationData={applicationData}></MyApplicationList> 
         </div>
     );
 };

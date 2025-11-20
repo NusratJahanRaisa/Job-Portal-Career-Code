@@ -6,8 +6,11 @@ const MainLayout = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className='mt-14'>
-             <Outlet></Outlet>
+
+            
+             {/* dynamic content */}
+            <div className='min-h-[calc(100vh-232px)]'>
+            <Outlet></Outlet>
             </div>
             
             <Footer></Footer>
